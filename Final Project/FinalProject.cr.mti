@@ -1,0 +1,70 @@
+{M:/Univ/Junior/1st Semester/Electronic Design Automation/Final Project/Project_Test.vhd} {0 {vcom -work work -2002 -explicit {M:/Univ/Junior/1st Semester/Electronic Design Automation/Final Project/Project_Test.vhd}
+Model Technology ModelSim ALTERA vcom 10.1d Compiler 2012.11 Nov  2 2012
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package std_logic_arith
+-- Loading package STD_LOGIC_UNSIGNED
+-- Compiling entity Project_Test
+-- Compiling architecture TLC_Arch of Project_Test
+-- Loading entity TLC
+** Error: M:/Univ/Junior/1st Semester/Electronic Design Automation/Final Project/Project_Test.vhd(24): (vcom-1136) Unknown identifier "P_B_1".
+
+** Error: M:/Univ/Junior/1st Semester/Electronic Design Automation/Final Project/Project_Test.vhd(25): (vcom-1136) Unknown identifier "Sensor_In_0".
+
+** Error: M:/Univ/Junior/1st Semester/Electronic Design Automation/Final Project/Project_Test.vhd(26): (vcom-1136) Unknown identifier "Sensor_In_1".
+
+** Error: M:/Univ/Junior/1st Semester/Electronic Design Automation/Final Project/Project_Test.vhd(27): (vcom-1136) Unknown identifier "Sensor_Out_0".
+
+** Error: M:/Univ/Junior/1st Semester/Electronic Design Automation/Final Project/Project_Test.vhd(28): (vcom-1136) Unknown identifier "Sensor_Out_1".
+
+** Error: M:/Univ/Junior/1st Semester/Electronic Design Automation/Final Project/Project_Test.vhd(44): Illegal target for signal assignment.
+** Error: M:/Univ/Junior/1st Semester/Electronic Design Automation/Final Project/Project_Test.vhd(44): (vcom-1136) Unknown identifier "P_B_1".
+
+** Error: M:/Univ/Junior/1st Semester/Electronic Design Automation/Final Project/Project_Test.vhd(45): Illegal target for signal assignment.
+** Error: M:/Univ/Junior/1st Semester/Electronic Design Automation/Final Project/Project_Test.vhd(45): (vcom-1136) Unknown identifier "Sensor_In_0".
+
+** Error: M:/Univ/Junior/1st Semester/Electronic Design Automation/Final Project/Project_Test.vhd(46): Illegal target for signal assignment.
+** Error: M:/Univ/Junior/1st Semester/Electronic Design Automation/Final Project/Project_Test.vhd(46): (vcom-1136) Unknown identifier "Sensor_In_1".
+
+** Error: M:/Univ/Junior/1st Semester/Electronic Design Automation/Final Project/Project_Test.vhd(51): Illegal target for signal assignment.
+** Error: M:/Univ/Junior/1st Semester/Electronic Design Automation/Final Project/Project_Test.vhd(51): (vcom-1136) Unknown identifier "P_B_1".
+
+** Error: M:/Univ/Junior/1st Semester/Electronic Design Automation/Final Project/Project_Test.vhd(52): Illegal target for signal assignment.
+** Error: M:/Univ/Junior/1st Semester/Electronic Design Automation/Final Project/Project_Test.vhd(52): (vcom-1136) Unknown identifier "Sensor_In_0".
+
+** Error: M:/Univ/Junior/1st Semester/Electronic Design Automation/Final Project/Project_Test.vhd(53): Illegal target for signal assignment.
+** Error: M:/Univ/Junior/1st Semester/Electronic Design Automation/Final Project/Project_Test.vhd(53): (vcom-1136) Unknown identifier "Sensor_In_1".
+
+** Error: M:/Univ/Junior/1st Semester/Electronic Design Automation/Final Project/Project_Test.vhd(61): Illegal target for signal assignment.
+** Error: M:/Univ/Junior/1st Semester/Electronic Design Automation/Final Project/Project_Test.vhd(61): (vcom-1136) Unknown identifier "P_B_1".
+
+** Error: M:/Univ/Junior/1st Semester/Electronic Design Automation/Final Project/Project_Test.vhd(62): Illegal target for signal assignment.
+** Error: M:/Univ/Junior/1st Semester/Electronic Design Automation/Final Project/Project_Test.vhd(62): (vcom-1136) Unknown identifier "Sensor_In_0".
+
+** Error: M:/Univ/Junior/1st Semester/Electronic Design Automation/Final Project/Project_Test.vhd(63): Illegal target for signal assignment.
+** Error: M:/Univ/Junior/1st Semester/Electronic Design Automation/Final Project/Project_Test.vhd(63): (vcom-1136) Unknown identifier "Sensor_In_1".
+
+** Error: M:/Univ/Junior/1st Semester/Electronic Design Automation/Final Project/Project_Test.vhd(69): VHDL Compiler exiting
+
+} {11.0 12.0 13.0 14.0 15.0 16.0 17.0 18.0 19.0 20.0 21.0 23.0 24.0 26.0 27.0 29.0 30.0 32.0 33.0 35.0 36.0 38.0 39.0 41.0 42.0 44.0 45.0 47.0 48.0 49.0} {}} {M:/Univ/Junior/1st Semester/Electronic Design Automation/Final Project/ProjectMod.vhd} {1 {vcom -work work -2002 -explicit {M:/Univ/Junior/1st Semester/Electronic Design Automation/Final Project/ProjectMod.vhd}
+Model Technology ModelSim ALTERA vcom 10.1d Compiler 2012.11 Nov  2 2012
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package std_logic_arith
+-- Loading package STD_LOGIC_UNSIGNED
+-- Compiling entity TLC
+-- Compiling architecture TLC_Arch of TLC
+
+} {} {}} {M:/Univ/Junior/1st Semester/Electronic Design Automation/Final Project/Project.vhd} {0 {vcom -work work -2002 -explicit {M:/Univ/Junior/1st Semester/Electronic Design Automation/Final Project/Project.vhd}
+Model Technology ModelSim ALTERA vcom 10.1d Compiler 2012.11 Nov  2 2012
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package std_logic_arith
+-- Loading package STD_LOGIC_UNSIGNED
+-- Compiling entity TLC
+** Error: M:/Univ/Junior/1st Semester/Electronic Design Automation/Final Project/Project.vhd(6): near "lights": expecting ':'
+
+} {9.0 10.0} {}}

@@ -1,0 +1,143 @@
+LIBRARY IEEE;
+USE IEEE.STD_LOGIC_1164.ALL;
+USE IEEE.STD_LOGIC_UNSIGNED.ALL;
+
+ENTITY TLC IS
+     PORT(
+         CLK,RST                     : IN  STD_LOGIC;
+         Sensor_In_0,Sensor_In_1     : IN  STD_LOGIC; -- 2 sensor inputs
+         Sensor_out_0,Sensor_Out_1   : OUT STD_LOGIC; -- 2 sensor outputs
+         P_B_0,P_B_1                 : IN  STD_LOGIC; -- 2 Push Buttons 
+         Traffic_Lights              : OUT STD_LOGIC_VECTOR(11 DOWNTO 0)
+         );
+END TLC;
+
+
+ARCHITECTURE TLC_Arch of TLC is
+TYPE STATES IS ( S0_G_R_R_G, S1_Y_R_R_Y, S2_R_G_G_R, S3_R_Y_Y_R, SAFETY_ALL_RED) ; -- order: FirstLane _Pedestrain0_SecondLane_Pedestrain1
+SIGNAL STATE   : STATES ; 
+SIGNAL COUNTER   : STD_LOGIC_VECTOR (2 DOWNTO 0) ;
+
+CONSTANT sec5    : std_logic_vector (2 DOWNTO 0) := "110"; -- 5 secs
+CONSTANT sec2    : std_logic_vector (2 DOWNTO 0) := "010"; -- 2 secs
+CONSTANT safety  : std_logic_vector (2 DOWNTO 0) := "011"; -- 3 secs
+
+
+BEGIN
+    PROCESS (CLK,RST)
+    BEGIN
+    
+    IF RST='1' THEN
+    STATE <= S0_G_R_R_G; -- reset to initial state 
+    COUNTER <= "000"; -- reset counter
+  
+    ELSIF CLK' event AND CLK = '1' THEN --during rising edge
+    
+    CASE (STATE) IS
+      
+    WHEN Hold => -- during Standby state
+    IF P_B_0 = '1' THEN  -- if first button is pushed 
+    STATE <= S1_Y_R_R_Y; -- move to first state
+    COUNTER <= "000"; -- reset counter
+    
+    ELSIF P_B_1 = '1' THEN --if second button is pushed 
+    STATE <= SAFETY_ALL_RED; -- move to saftey state (all lights are red)
+    COUNTER <= "000"; -- reset counter
+    
+    ELSE
+    STATE <= SAFETY_ALL_RED; -- if no buttons are pushed => move to safety state
+    END IF;
+    
+    
+    WHEN S0_G_R_R_G => -- during initial state
+    IF COUNTER < sec5 THEN --if counter < 5secs
+    STATE <= S0_G_R_R_G; -- stay at same state(initial)
+    COUNTER <= COUNTER + 1; -- increment counter 
+    
+    ELSE
+    STATE <= S1_Y_R_R_Y; -- move to next state (first state)
+    COUNTER <= "000"; -- reset counter
+    END IF;
+
+
+    when S1_Y_R_R_Y => -- during first state
+    IF COUNTER < sec2 then -- if counter < 2 secs
+    STATE <= S1_Y_R_R_Y; -- stay at same state(first)
+    COUNTER <= COUNTER + 1; -- increment counter 
+    
+    ELSE
+    STATE <= S2_R_G_G_R; -- move to next state (second)
+    COUNTER <= "000"; -- reset counter 
+    END IF;
+    
+    
+    when S2_R_G_G_R =>-- during second state
+    IF COUNTER < sec5 then -- if counter < 5 secs
+    STATE <= S2_R_G_G_R; -- stay at same state (second)
+    COUNTER <= COUNTER + 1; -- increment counter 
+    
+    ELSE
+    STATE <= S3_R_Y_Y_R; -- move to next state (third)
+    COUNTER <= "000"; -- reset counter 
+    END IF;
+    
+    
+    WHEN S3_R_Y_Y_R => -- during  third state 
+    IF COUNTER < sec2 THEN -- if counter < 2 secs
+    STATE <= S3_R_Y_Y_R; -- stay at same state (third)  
+    COUNTER <= COUNTER + 1; -- increment counter 
+    
+    ELSE
+    STATE <=SAFETY_ALL_RED; -- move to last state (safety)
+    COUNTER <= "000"; -- reset counter 
+    END IF;
+    
+    
+    WHEN SAFETY_ALL_RED => -- during safety (last) state 
+    IF COUNTER < safety THEN -- if counter < safety
+    STATE <= SAFETY_ALL_RED; -- stay at safety state
+    COUNTER <= COUNTER + 1; -- increment counter 
+    
+    ELSE
+    STATE <=S0_G_R_R_G; -- move to initial state
+    COUNTER <= "000"; -- reset counter 
+    END IF;
+    
+    
+    WHEN OTHERS => --otherwise
+    STATE <= S0_G_R_R_G; -- move to initial state 
+    
+    END CASE;
+    END IF;
+    END PROCESS;
+    
+    SENSOR_OUTPUT: PROCESS (STATE,Sensor_In_0,Sensor_In_1)
+    
+    BEGIN
+        IF   (Sensor_In_0 = '1' AND (STATE = S0_G_R_R_G OR STATE = S1_Y_R_R_Y)) 
+        THEN Sensor_Out_0 <= '1';
+        ELSE Sensor_Out_0 <= '0';
+        END IF;
+        
+        IF   (Sensor_In_1 = '1' AND (STATE = S2_R_G_G_R OR STATE = S3_R_Y_Y_R)) 
+        THEN Sensor_Out_1 <= '1';
+        ELSE Sensor_Out_1 <= '0';
+        END IF;
+    END PROCESS;
+
+    STATE_OUTPUT: PROCESS (STATE) -- each 3 bits are (Red,Amber"Yellow",Green)
+    BEGIN
+        CASE STATE IS                                                        -- First Lane   _ pedestrian 1    _ Second Lane   _ pedestrain 2
+            WHEN S0_G_R_R_G => Traffic_Lights <= b"001_100_100_001"; -- green        _ red             _ red           _ green
+            WHEN S1_Y_R_R_Y => Traffic_Lights <= b"010_100_100_010"; -- yellow       _ red             _ red           _ yellow
+            WHEN S2_R_G_G_R => Traffic_Lights <= b"100_001_001_100"; -- red          _ green           _ green         _ red
+            WHEN S3_R_Y_Y_R => Traffic_Lights <= b"100_010_010_100"; -- red          _ yellow          _ yellow        _ red
+            
+            
+            
+            WHEN SAFETY_ALL_RED     => Traffic_Lights <= b"100_100_100_100"; -- red            _ red          _ red    _ red (safety case)
+            WHEN OTHERS => Traffic_Lights <= b"001_100_100_001";
+        END CASE;
+    END PROCESS;
+
+END TLC_Arch;

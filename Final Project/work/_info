@@ -1,0 +1,104 @@
+m255
+K3
+13
+cModel Technology
+dM:\Pro\ModelSim
+Emain
+Z0 w1642083813
+Z1 DPx4 ieee 15 std_logic_arith 0 22 4`Y?g_lkdn;7UL9IiJck01
+Z2 DPx4 ieee 18 std_logic_unsigned 0 22 RYmj;=TK`k=k>D@Cz`zoB3
+Z3 DPx3 std 6 textio 0 22 5>J:;AW>W0[[dW0I6EN1Q0
+Z4 DPx4 ieee 14 std_logic_1164 0 22 5=aWaoGZSMWIcH0i^f`XF1
+Z5 dM:\Univ\Junior\1st Semester\Electronic Design Automation\Final Project
+Z6 8M:/Univ/Junior/1st Semester/Electronic Design Automation/Final Project/ProjectMod.vhd
+Z7 FM:/Univ/Junior/1st Semester/Electronic Design Automation/Final Project/ProjectMod.vhd
+l0
+L5
+Vm`dJRbcX8`0[1Mhg6FB`:1
+Z8 OV;C;10.1d;51
+32
+Z9 !s108 1642083813.288000
+Z10 !s90 -reportprogress|300|-work|work|-2002|-explicit|M:/Univ/Junior/1st Semester/Electronic Design Automation/Final Project/ProjectMod.vhd|
+Z11 !s107 M:/Univ/Junior/1st Semester/Electronic Design Automation/Final Project/ProjectMod.vhd|
+Z12 o-work work -2002 -explicit -O0
+Z13 tExplicit 1
+!s100 QH:NIjnN_ZGA<8<1<hRWG1
+!i10b 1
+Abehave
+R1
+R2
+R3
+R4
+DEx4 work 4 main 0 22 m`dJRbcX8`0[1Mhg6FB`:1
+l26
+L16
+V6ACZl7UDzVzeXkdd0C0zF1
+R8
+32
+R9
+R10
+R11
+R12
+R13
+!s100 H7:ziM_dbPI:8FC27ZhDb1
+!i10b 1
+Eproject_test
+w1642086307
+R1
+R2
+R3
+R4
+R5
+8M:/Univ/Junior/1st Semester/Electronic Design Automation/Final Project/Project_Test.vhd
+FM:/Univ/Junior/1st Semester/Electronic Design Automation/Final Project/Project_Test.vhd
+l0
+L6
+V8a]DiJVh;N]XNUQ0dQhGz1
+R8
+32
+R12
+R13
+!s100 Qz3B9C[;gRR48ePE@[7023
+!i10b 1
+!s108 1642086317.190000
+!s90 -reportprogress|300|-work|work|-2002|-explicit|M:/Univ/Junior/1st Semester/Electronic Design Automation/Final Project/Project_Test.vhd|
+!s107 M:/Univ/Junior/1st Semester/Electronic Design Automation/Final Project/Project_Test.vhd|
+Etlc
+Z14 w1642164420
+R1
+R2
+R3
+R4
+R5
+R6
+R7
+l0
+L5
+V2D8J3h95B`g_l:j@WWNWR2
+!s100 UTDZPCgeY_Jh69CcBTY941
+R8
+32
+!i10b 1
+Z15 !s108 1642165077.386000
+R10
+Z16 !s107 M:/Univ/Junior/1st Semester/Electronic Design Automation/Final Project/ProjectMod.vhd|
+R12
+R13
+Atlc_arch
+R1
+R2
+R3
+R4
+Z17 DEx4 work 3 tlc 0 22 2D8J3h95B`g_l:j@WWNWR2
+l26
+L16
+V=<LNDBMl[Jm07aLH4[eiE0
+!s100 =8A[0NcF_XOTH;n1WWB;Y3
+R8
+32
+!i10b 1
+R15
+R10
+R16
+R12
+R13

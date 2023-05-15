@@ -1,0 +1,73 @@
+library IEEE;
+use IEEE.STD_LOGIC_1164.ALL;
+use ieee.std_logic_unsigned.all;
+entity TLC is
+ Port (
+ Traffic lights:out STD_LOGIC_Vector (5 downto 0); --output
+ Clck : in STD_LOGIC; --clk
+ Reset : in STD_LOGIC; --reset
+ P_B : in STD_LOGIC); --??
+end TLC;
+architecture Behavioral of TLC is
+ type state_type is (st0_R1_G2, st1_R1_A1_A2, st2_G1_R2, st3_A1_R2_A2); 
+ signal state: state_type; 
+ signal count : std_logic_vector (3 downto 0);
+ constant sec10 : std_logic_vector ( 3 downto 0) := "1010";
+ constant sec2 : std_logic_vector (3 downto 0 ) := "0010";  --1clk = 1 second
+ constant sec16: std_logic_vector (3 downto 0 ) := "1111";
+begin
+ process (Clck,Reset)
+ begin
+ if Reset='1' then
+ state <= st0_R1_G2; --reset to initial state
+ count <= X"0"; -- reset counter
+ elsif Clck' event and Clck = '1' then -- during rising edge
+ case (state) is 
+ when st0_R1_G2 => -- during initial state 
+ if count < sec10 then -- if counter < 10 
+ state <= st0_R1_G2; --wait at same state
+ count <= count + 1; --increment the counter
+ else     
+ state <= st1_R1_A1_A2; --move to next(first) state
+ count <= X"0"; -- reset counter
+ end if;
+ when st1_R1_A1_A2 => -- during first state
+ if count < sec2 then -- if count < 2
+ state <= st1_R1_A1_A2; --wait at same state 
+ count <= count + 1; --increment counter 
+ else
+ state <= st2_G1_R2; --move to next (second) state 
+ count <= X"0";  -- reset counter
+ end if;
+ when st2_G1_R2 =>  --during second state
+ if count < sec10 then --if counter <10
+ state <= st2_G1_R2; --wait at same state
+ count <= count + 1; -- increment counter 
+ else
+ state <= st3_A1_R2_A2; -- move to next(thrid) state  
+ count <= X"0";     --reset counter
+ end if;
+ when st3_A1_R2_A2 => --during third(last) state 
+ if count < sec2 then -- if counter < 2
+ state <= st3_A1_R2_A2; --wait at same state
+ count <= count + 1; --increment counter
+ else
+ state <=st0_R1_G2; -- move to next(initial) state "circular"
+ count <= X"0"; --reset counter
+ end if; 
+ when others => --otherwise
+ state <= st0_R1_G2; -- reset state
+ end case; 
+ end if;
+ end process;
+ OUTPUT_DECODE: process (state)
+ begin
+ case state is 
+ when st0_R1_G2 => Trafficlights <= "100001"; -- Traffic Red 1, Pedestrian Green 1 
+ when st1_R1_A1_A2 => Trafficlights <= "110010";
+ when st2_G1_R2 => Trafficlights <= "001100";
+ when st3_A1_R2_A2 => Trafficlights <= "010110";
+ when others => Trafficlights <= "100001";
+ end case; 
+ end process;
+end Behavioral;
